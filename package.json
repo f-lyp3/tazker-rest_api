@@ -1,0 +1,25 @@
+{
+  "name": "tazk-rest-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "pretest": "NODE_ENV=test node src/utils/erasedb.js",
+    "test": "jest --runInBand --detectOpenHandles --watchAll",
+    "posttest": "NODE_ENV=test node src/utils/erasedb.js"
+  },
+  "keywords": ["Rest API", "Todo", "Task"],
+  "author": "Lyp3",
+  "license": "ISC",
+  "devDependencies": {
+    "faker": "^4.1.0",
+    "jest": "^25.1.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.5"
+  }
+}
