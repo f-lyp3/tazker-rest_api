@@ -5,7 +5,7 @@ function generateFakeUser(overrides){
         firstname: faker.name.firstName(),
         lastname: faker.name.firstName(),
         email: faker.internet.email(),
-        password: faker.internet.password(),
+        password: "M1p4$$0rD",
         ...overrides // Manual fields and overrides
     })
 }

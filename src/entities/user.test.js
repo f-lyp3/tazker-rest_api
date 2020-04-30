@@ -45,14 +45,13 @@ describe("User data validation", () => {
     });
 
     it("Should make a user when all data is valid", () => {
-        const userInfo = generateFakeUser({ password: "M1p4$$0rD" });
+        const userInfo = generateFakeUser();
         const user = makeUser(userInfo);
 
         expect(user.getFirstname()).toBe(userInfo.firstname);
         expect(user.getFirstname()).toBe(userInfo.firstname);
         expect(user.getFirstname()).toBe(userInfo.firstname);
         expect(user.getPasswordToHash()).toBe(userInfo.password);
-        expect(user.getCreationDate()).toBeDefined();
     })
 
 })

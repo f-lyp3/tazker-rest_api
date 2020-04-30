@@ -14,6 +14,7 @@ function makeUserDb({ UserModel }){
         // Finds an user by it's id and return it
         try {
             const foundUser = await UserModel.findById(userId);
+            if(!foundUser) return null
             return foundUser._doc; // Return the document info only, without mongoose methods
         } catch (err) {
             // TODO: Add loggin
@@ -25,6 +26,7 @@ function makeUserDb({ UserModel }){
         // Finds an user by email and return it
         try {
             const foundUser = await UserModel.findOne({ email: userEmail});
+            if(!foundUser) return null
             return foundUser._doc; // Return the document info only, without mongoose methods
         } catch (err) {
             // TODO: Add loggin
@@ -47,6 +49,7 @@ function makeUserDb({ UserModel }){
         // Updates an user by id and return it
         try {
             const updatedUser = await UserModel.findByIdAndUpdate(userId, updates, { new: true });
+            if(!updatedUser) return null
             return updatedUser._doc; // Return the document info only, without mongoose methods
         } catch (err) {
             // TODO: Add loggin
@@ -58,6 +61,7 @@ function makeUserDb({ UserModel }){
         // Remove an user by id and return it
         try {
             const removedUser = await UserModel.findByIdAndRemove(userId);
+            if(!removedUser) return null
             return removedUser._doc; // Return the document info only, without mongoose methods
         } catch (err) {
             // TODO: Add loggin

@@ -1,11 +1,10 @@
-function builMakeUser({ mustHaveError }){
+function builMakeUser({ mustHaveError, isValidEmail }){
     // makeUser Verifies given information if makes a valid user prior user creation.
     return function makeUser({
         firstname,
         lastname,
         email,
-        password,
-        createdAt = Date.now() // User' signed up date, defaults from current date on runtime.
+        password
     } = {}){
 
         // All params are required!
@@ -16,7 +15,7 @@ function builMakeUser({ mustHaveError }){
         if(!isValidname(lastname)) throw new Error("Invalid user's lastname!")
 
         if(!email) throw mustHaveError('User', 'email');
-        if(!isValidEmail) throw new Error("Invalid user's email!");
+        if(!isValidEmail(email)) throw new Error("Invalid user's email!");
 
         if(!password) throw mustHaveError('User', 'password');
         if(!isFinePassoword(password)) {
@@ -31,8 +30,7 @@ function builMakeUser({ mustHaveError }){
             getFirstname: () => firstname,
             getLastname: () => lastname,
             getEmail: () => email,
-            getPasswordToHash: () => password,
-            getCreationDate: () => createdAt
+            getPasswordToHash: () => password
         });
     }
 
@@ -40,13 +38,6 @@ function builMakeUser({ mustHaveError }){
         // Validate user's name
         const nameRegex = new RegExp(/^[a-zA-Z]+$/);
         return nameRegex.test(name);
-    }
-
-    function isValidEmail(email){
-        // Validate the email
-        const emailRegex = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-
-        return emailRegex.test(email)
     }
 
     function isFinePassoword(password){
