@@ -13,7 +13,7 @@ function buildmakeTask({ mustHaveError, isValidID, makeHash }){
         if(!isValidID(authorID)) throw new Error("Invalid Author's id!");
 
         // Parent's id must be valid
-        if(!isValidID(parentID)) throw new Error("Invalid parent's id!");
+        if(parentID && !isValidID(parentID)) throw new Error("Invalid parent's id!");
 
         // Creates a hash based on author's id and task's name to prevent duplicates from the same user
         const hash = makeHash(name.concat(authorID))

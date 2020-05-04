@@ -17,7 +17,7 @@ describe("Task Database", () => {
         expect(createdTask).toBeDefined();
         expect(createdTask.name).toBe(taskInfo.name)
         expect(String(createdTask.authorID)).toBe(taskInfo.authorID)
-        expect(String(createdTask.parentID)).toBe(taskInfo.parentID)
+        expect(String(createdTask.parentID)).toBe(String(taskInfo.parentID))
         expect(createdTask.hash).toBeDefined()
         done()
     });
@@ -52,7 +52,7 @@ describe("Task Database", () => {
         const updatedTask = await TaskDb.updateById(createdTask._id, updates);
         
         expect(updatedTask).toBeDefined();
-        expect(String(updatedTask._id)).toBe(String(createdTask._id));
+        expect(updatedTask._id.toString()).toBe(createdTask._id.toString());
         expect(updatedTask.name).toBe(updates.name);
         done();
     })

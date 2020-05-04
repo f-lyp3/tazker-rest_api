@@ -14,6 +14,10 @@ const TaskSchema = new Schema({
     },
     hash: {
         type: String
+    },
+    completed: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 
