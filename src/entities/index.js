@@ -10,12 +10,13 @@ const makeUser = buildMakeUser({ mustHaveError, isValidEmail });
 const makeTask = buildMakeTask({mustHaveError, isValidID, makeHash})
 
 module.exports = Object.freeze({
-    makeUser
+    makeUser,
+    makeTask
 });
 
 function makeHash(keystring){
     return crypto
     .createHash('md5')
-    .update(text, 'utf-8')
+    .update(keystring, 'utf-8')
     .digest('hex');
 }
