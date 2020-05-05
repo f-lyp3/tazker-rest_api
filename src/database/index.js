@@ -1,10 +1,17 @@
+"use strict";
+
 const mongoose = require("mongoose");
 
 const { DB_HOST, DB_NAME } = require("../../config/config");
+
 const UserModel = require("./models/user");
+const TaskModel = require("./models/task");
 
 const makeUserDb = require("./user-db");
+const makeTaskDb = require("./task-db");
+
 const UserDb = makeUserDb({ UserModel })
+const TaskDb = makeTaskDb({ TaskModel })
 
 module.exports = (() => {
     // Check if connected
@@ -23,8 +30,10 @@ module.exports = (() => {
     // Return an access-data object.
     return Object.freeze({
         models: {
-            UserModel
+            UserModel,
+            TaskModel
         },
-        UserDb
-    })
+        UserDb,
+        TaskDb
+    });
 })();
