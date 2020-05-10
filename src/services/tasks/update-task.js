@@ -2,7 +2,7 @@ const { makeTask } = require("../../entities")
 
 function buildUpdateTask({ TaskDb, isValidID }){
 
-    return async function update({ id, ...updates }){
+    return async function update(id, { ...updates }){
         // Check if the given id is valid one.
         if(!id || !isValidID(id)) throw new Error("Invalid task id!");
 
