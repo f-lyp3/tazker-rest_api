@@ -5,7 +5,7 @@ const { generateFakeTask } = require("../../../__tests__/data-faker");
 describe("Remove Task use-case", () => {
     it("Should faill to remove non-existing task with valid id", async (done) => {
         const id = "5e86272b0ceb652cc7591e77"
-        expect(removeTask(id)).rejects.toThrow("Task not found!")
+        expect(removeTask(id)).rejects.toThrow("Task doesn't exists!")
         done()
     })
 

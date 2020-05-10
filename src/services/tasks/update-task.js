@@ -10,7 +10,7 @@ function buildUpdateTask({ TaskDb, isValidID }){
         const existing = await TaskDb.findById(id);
         if(!existing) throw new Error("Task doesn't exists!")
 
-        const notAlloweds = checkForNonAllowed(updates, ["name", "description"])
+        const notAlloweds = checkForNonAllowed(updates, ["name"])
         if(notAlloweds.length) throw new Error(`Invalid updates fields! [${notAlloweds.join(", ")}]`)
 
         // Mergin existing task with possible updates, and validate.
