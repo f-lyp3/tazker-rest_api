@@ -17,13 +17,13 @@ describe("Task creation", () => {
     });
 
     it("Should not create a task with non-existing task parent id", async (done) => {
-        const newTask = generateFakeTask({ parent: "5e84c7580ca804274bd08536"})
+        const newTask = generateFakeTask({ parentID: "5e84c7580ca804274bd08536"})
         expect(createTask(newTask)).rejects.toThrow()
         done()
     })
 
     it("Should not create a task with invalid task parent id", async (done) => {
-        const newTask = generateFakeTask({ parent: "5e84c7580ca8042bd08536"})
+        const newTask = generateFakeTask({ parentID: "5e84c7580ca8042bd08536"})
         expect(createTask(newTask)).rejects.toThrow()
         done()
     })

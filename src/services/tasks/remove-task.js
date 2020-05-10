@@ -4,7 +4,7 @@ function buildRemoveTask({ TaskDb, isValidID }){
 
         const removed = await TaskDb.removeById(id);
 
-        if(!removed) throw new Error("Task not found!")
+        if(!removed) throw new Error("Task doesn't exists!")
         
         return removed;
     }
