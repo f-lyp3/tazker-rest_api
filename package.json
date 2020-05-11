@@ -2,8 +2,9 @@
   "name": "tazk-rest-api",
   "version": "1.0.0",
   "description": "",
-  "main": "",
+  "main": "src/index.js",
   "scripts": {
+    "dev": "nodemon src/index.js",
     "pretest": "NODE_ENV=test node src/utils/erasedb.js",
     "test": "jest --runInBand --detectOpenHandles --watchAll",
     "posttest": "NODE_ENV=test node src/utils/erasedb.js"

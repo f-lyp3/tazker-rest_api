@@ -6,7 +6,7 @@ function buildCreateUser({ UserDb, hashPassword }){
         // Validate provided user information.
         const user = makeUser(userInfo);
 
-        const exists = await UserDb.find({ email: user.getEmail() });
+        const exists = await UserDb.findByEmail(user.getEmail());
         if(exists) throw new Error("Email already taken!");
 
         const hashedpwd = await hashPassword(user.getPasswordToHash());

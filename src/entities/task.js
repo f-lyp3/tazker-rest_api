@@ -4,7 +4,7 @@ function buildmakeTask({ mustHaveError, isValidID, makeHash }){
     return function makeTask({
         name, // name of the task
         authorID, // the owner id, the user creating the task
-        parentID // If supplied it'll be interpreted as subtask of this tasks's id
+        parentID = null // If supplied it'll be interpreted as subtask of this tasks's id
     } = {}){
         // Must have a name
         if(!name) throw mustHaveError("Task", "a name");
@@ -16,7 +16,7 @@ function buildmakeTask({ mustHaveError, isValidID, makeHash }){
         if(parentID && !isValidID(parentID)) throw new Error("Invalid parent's id!");
 
         // Creates a hash based on author's id and task's name to prevent duplicates from the same user
-        const hash = makeHash(name.concat(authorID))
+        const hash = makeHash(`${name}${parentID}${authorID}`);
 
         return Object.freeze({
             getName : () => name,

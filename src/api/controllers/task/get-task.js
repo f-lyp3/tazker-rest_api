@@ -1,10 +1,12 @@
 function buildGetTask({ getTaskById }){
-    return async function getTask(id){
+    return async function getTask({ params }){
+        const { id } = params;
+        
         try {
             const found = await getTaskById({ id: id });
             if(!found) {
                 return {
-                    body: { error: "Task does not exists!" },
+                    body: { error: "Task not found!" },
                     statusCode: 404
                 }
             }

@@ -6,7 +6,7 @@ const buildGetTaskById = require("./get-taskById");
 const buildCreateTask = require("./create-task");
 const buildUpdateTask = require("./update-task");
 const buildRemoveTask = require("./remove-task")
-const buildListTask         = require("./list-task"); 
+const buildListTask   = require("./list-task"); 
 const buildMakeComplete = require("./make-completed");
 
 const getTaskById = buildGetTaskById({TaskDb, isValidID})

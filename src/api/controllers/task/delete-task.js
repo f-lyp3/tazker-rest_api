@@ -1,5 +1,7 @@
 function buildDeleteTask({ removeTask }){
-    return async function deleteTask(id){
+    return async function deleteTask({ params }){
+        const { id } = params;
+        
         try {
             const deleted = await removeTask(id);
             

@@ -7,7 +7,7 @@ describe("Post Task", () => {
 
     it("Should post a task", async (done) => {
         const task = generateFakeTask()
-        const { body, statusCode } = await postTask(task);
+        const { body, statusCode } = await postTask({ body: task });
 
         expect(body).toBeDefined()
         expect(body.posted).toBeDefined()
@@ -17,7 +17,7 @@ describe("Post Task", () => {
 
     it("Should catch every throwed error", async (done) => {
         const task = generateFakeTask({ name: null });
-        const { body, statusCode } = await postTask(task);
+        const { body, statusCode } = await postTask({ body: task });
 
         expect(body.error).toBeDefined();
         expect(statusCode).toBe(400);
