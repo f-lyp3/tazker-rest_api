@@ -1,6 +1,7 @@
 function buildGetUser({ getUserById }){
     // A factory function for handling GET requests
-    return async function getUser(id){
+    return async function getUser({ params}){
+        const { id } = params
         try {
             // Retrive user form DB
             const user = await getUserById({ id });

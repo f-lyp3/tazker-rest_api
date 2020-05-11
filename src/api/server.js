@@ -3,7 +3,8 @@ const Express = require("express");
 const app = Express();
 
 const {
-    AuthRoutesHandler
+    AuthRoutesHandler,
+    UserRoutesHandler
 } = require("./routes");
 
 
@@ -16,6 +17,7 @@ app.use(Express.json());
 // })
 
 app.use("/auth", AuthRoutesHandler);
+app.use("/user", UserRoutesHandler);
 
 app.listen(4000, () => {
     console.log("server is running!");

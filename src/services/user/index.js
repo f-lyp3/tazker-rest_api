@@ -11,7 +11,7 @@ const buildRemoveUser = require("./remove-user");
 
 
 const createUser = buildCreateUser({ UserDb, hashPassword });
-const updateUser = buildUpdateUser({ UserDb, isValidID });
+const updateUser = buildUpdateUser({ UserDb, isValidID, hashPassword });
 const removeUser = buildRemoveUser({ UserDb, isValidID });
 const getUserByEmail = buildGetUserByEmail({ UserDb, isValidEmail });
 const getUserById = buldGetUserById({ UserDb, isValidID });
