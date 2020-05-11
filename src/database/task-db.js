@@ -2,6 +2,7 @@ function makeTaskDb ({ TaskModel }) {
     return Object.freeze({
         findAll,
         findById,
+        findByHash,
         insert,
         updateById,
         removeById
@@ -25,6 +26,17 @@ function makeTaskDb ({ TaskModel }) {
             console.log(err.message);
         }
     }
+
+    async function findByHash (taskHash) {
+        try {
+            const foundTask = await TaskModel.findOne({ hash: taskHash });
+            // If found a Task returns it doc representation, else return null.
+            return foundTask ? foundTask._doc: null;
+        } catch (err){
+            console.log(err.message);
+        }
+    }
+
     async function insert (taskInfo) {
         try {
             const createdTask = await TaskModel.create(taskInfo);

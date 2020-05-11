@@ -17,7 +17,7 @@ function buildPutUser({ updateUser }){
             console.log(e)
             return {
                 body: { error: e.message },
-                statusCode: 401
+                statusCode: 400
             }
         }
     }

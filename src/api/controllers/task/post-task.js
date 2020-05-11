@@ -1,5 +1,7 @@
 function buildPostTask({ createTask }){
-    return  async function postTask(taskInfo){
+    return  async function postTask({ body }){
+        const taskInfo = body;
+        
         try {
             posted = await createTask(taskInfo)
             if(!posted) return {

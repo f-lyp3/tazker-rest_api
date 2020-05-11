@@ -17,7 +17,7 @@ function buildDeleteUser({ removeUser }){
             // Every other possible errors, is probabily from user's input.
             return {
                 body: { error: e.message },
-                statusCode: 401
+                statusCode: 400
             }
         }
     }

@@ -1,5 +1,7 @@
 function buildListTask({ listTask }){
-    return async function getTask(query){
+    return async ({ params, body }) => {
+        console.log(params, body)
+        const query = params;
         try {
             const tasks = await listTask(query);
 

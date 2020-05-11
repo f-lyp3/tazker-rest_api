@@ -10,7 +10,8 @@ const TaskSchema = new Schema({
     },
     parentID: {
         type: Schema.Types.ObjectId,
-        ref: "Tasks"
+        ref: "Tasks",
+        default: null
     },
     hash: {
         type: String

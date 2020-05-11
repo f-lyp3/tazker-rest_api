@@ -1,24 +1,29 @@
 const Express = require("express");
 
+// Instateate a new Express application
 const app = Express();
 
+// Bringing in all route's handlers.
 const {
     AuthRoutesHandler,
-    UserRoutesHandler
+    UserRoutesHandler,
+    TaskRoutesHandler
 } = require("./routes");
 
 
 // Setting up express' middlewares
 app.use(Express.json());
 
-// app.use((req, res, next) => {
-//     console.log(req.body)
+// An request logger.
+// app.use((req, _, next) => {
+//     console.log("the route path: ", req.url)
 //     next()
 // })
 
-app.use("/auth", AuthRoutesHandler);
-app.use("/user", UserRoutesHandler);
+// Configuring the routes
+app.use("/api", AuthRoutesHandler);
+app.use("/api", UserRoutesHandler);
+app.use("/api", TaskRoutesHandler);
 
-app.listen(4000, () => {
-    console.log("server is running!");
-});
+// Make app avaliable outside, so we can test it without running the actual server
+module.exports = app;

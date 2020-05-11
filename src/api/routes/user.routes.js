@@ -1,8 +1,8 @@
 function buildUserRoutesHandler({ router, expressCallbackHelper, UserController }){
 
-    router.get("/:id", expressCallbackHelper(UserController.getUser));
-    router.put("/:id", expressCallbackHelper(UserController.putUser));
-    router.delete("/:id", expressCallbackHelper(UserController.deleteUser));
+    router.get("/user/:id", expressCallbackHelper(UserController.getUser));
+    router.put("/user/:id", expressCallbackHelper(UserController.putUser));
+    router.delete("/user/:id", expressCallbackHelper(UserController.deleteUser));
 
     return router;
 }

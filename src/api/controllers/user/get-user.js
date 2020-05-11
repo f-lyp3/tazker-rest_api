@@ -4,8 +4,8 @@ function buildGetUser({ getUserById }){
         const { id } = params
         try {
             // Retrive user form DB
-            const user = await getUserById({ id });
-            if(!user){
+            const found = await getUserById({ id });
+            if(!found){
                 // Not found! return 404
                 return {
                     body: { error: "User not found!"},
@@ -13,12 +13,12 @@ function buildGetUser({ getUserById }){
                 }
             }
             // Return the found user!
-            return { body: { user }, statusCode: 200 }
+            return { body: { found }, statusCode: 200 }
         } catch (e) {
             // Other possible errors is user's fault!
             return {
                 body: { error: e.message },
-                statusCode: 401
+                statusCode: 400
             }
         }
     }

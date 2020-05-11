@@ -4,17 +4,17 @@ const { generateFakeUser } = require("../../../__tests__/data-faker");
 
 describe("Update User", () => {
     it("Should not update a user without an id", async (done) => {
-        expect(updateUser()).rejects.toThrow("Must provide an user id!");
+        expect(updateUser()).rejects.toThrow("Must provide a valid user id!");
         done();
     });
 
     it("Should not update a user with a invalid id", async (done) => {
-        expect(updateUser("dfd9fdfsdf9dfdf")).rejects.toThrow("Invalid user id!");
+        expect(updateUser("dfd9fdfsdf9dfdf")).rejects.toThrow("Must provide a valid user id!");
         done();
     });
 
     it("Should not update a non-existing user", async (done) => {
-        expect(updateUser("5bcba4dd8609b7d2187651a7")).rejects.toThrow("User doesn't exists!");
+        expect(await updateUser("5bcba4dd8609b7d2187651a9", {})).toBe(null);
         done();
     });
 
