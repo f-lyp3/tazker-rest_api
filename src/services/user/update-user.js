@@ -7,7 +7,7 @@ function buildUpdateUser({ UserDb, isValidID }){
 
         // If user doesn't exists throw at the caller.
         let existing = await UserDb.findById(id);
-        if(!existing) throw new Error("User doesn't exists!");
+        if(!existing) return null;
 
         // TODO: in the future allow to update the current email or to add a new one more.
         let notAlloweds = checkForNonAllowed(updates, ["firstname", "lastname", "password"])

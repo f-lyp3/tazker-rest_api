@@ -1,4 +1,4 @@
-function makeExpressCallabck (controller) {
+function makeExpressCallback (controller) {
     // A function who needs a controller for dealling with req obj
     return function expressCallback (req, res){
         // Map the req obj to meet the controller's needs
@@ -14,7 +14,6 @@ function makeExpressCallabck (controller) {
                 'Authorization': req.get('Authorization')
             }
         }
-
         // Let the controller deals with reqObj then respond with controller's returned value
         controller(httpRequest)
             .then(httpResponse => {
@@ -31,4 +30,4 @@ function makeExpressCallabck (controller) {
     }
 }
 
-module.exports = makeExpressCallaback;
+module.exports = makeExpressCallback;

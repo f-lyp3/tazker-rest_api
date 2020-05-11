@@ -1,5 +1,6 @@
 function buildPostSignIn({ AuthService }){
-    return async function postSignUp({ email, password }){
+    return async function postSignUp({ body }){
+        const { email, password } = body;
         try {
             const auth = await AuthService.signIn({ email, password });
 

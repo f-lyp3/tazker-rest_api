@@ -5,7 +5,6 @@ function buildRemoveUser({ UserDb, isValidID }){
         if(!isValidID(id)) throw new Error("Invalid user id!")
 
         const removed = await UserDb.removeById(id)
-        if(!removed) throw new Error("User doesn't exists!")
 
         return removed;
     }

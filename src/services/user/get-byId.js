@@ -3,7 +3,6 @@ function buildGetUserById({ UserDb, isValidID }){
         if(!id || !isValidID(id)) throw new Error("Must provide an valid Id")
 
         const found = await UserDb.findById(id);
-        if(!found) throw new Error("User doesn't exists!");
 
         return found;
     }

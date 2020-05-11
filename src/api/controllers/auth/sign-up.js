@@ -1,5 +1,7 @@
 function buildPostSignUp({ AuthService }){
-    return async function postSignUp({ user }){
+    return async function postSignUp({ body }){
+        const user = body;
+        console.log(body, user);
         try {
             const auth = await AuthService.signUp({ ...user });
 
