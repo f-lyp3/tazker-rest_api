@@ -14,8 +14,8 @@ describe("User creation", () => {
         const createdUser = await createUser(user);
         
         expect(createdUser).toBeDefined()
-        expect(createdUser.firstname).toBe(user.firstname)
-        expect(createdUser.lastname).toBe(user.lastname)
+        expect(createdUser.firstName).toBe(user.firstName)
+        expect(createdUser.lastName).toBe(user.lastName)
 
         done()
     })

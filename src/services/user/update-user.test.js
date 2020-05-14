@@ -32,7 +32,7 @@ describe("Update User", () => {
         const user = await createUser(generateFakeUser());
 
         expect(updateUser(user._id, {
-            firstname: "",
+            firstName: "",
         })).rejects.toThrow();
         done();
     })
@@ -43,14 +43,14 @@ describe("Update User", () => {
         const user = await createUser(userInfo);
         
         const updatedUser = await updateUser(user._id, {
-            firstname: "Hello",
-            lastname: "World"
+            firstName: "Hello",
+            lastName: "World"
         });
 
         expect(updatedUser).toBeDefined();
         expect(updatedUser._id).toStrictEqual(user._id);
-        expect(updatedUser.firstname).not.toBe(user.firstname);
-        expect(updatedUser.lastname).not.toBe(user.lasttname);
+        expect(updatedUser.firstName).not.toBe(user.firstName);
+        expect(updatedUser.lastName).not.toBe(user.lasttname);
         done();
     })
 })

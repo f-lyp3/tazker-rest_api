@@ -26,8 +26,8 @@ function builMakeUser({ mustHaveError, isValidEmail, isFinePassword, isValidName
 
         // Returns a read-only object
         return Object.freeze({
-            getfirstName: () => firstName,
-            getlastName: () => lastName,
+            getFirstName: () => firstName,
+            getLastName: () => lastName,
             getEmail: () => email,
             getPasswordToHash: () => password
         });

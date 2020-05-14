@@ -12,8 +12,8 @@ function buildCreateUser({ UserDb, hashPassword }){
         const hashedpwd = await hashPassword(user.getPasswordToHash());
         // User information it's ok, insert it into the db.
         return await UserDb.insert({
-            firstname: user.getFirstname(),
-            lastname: user.getLastname(),
+            firstName: user.getFirstName(),
+            lastName: user.getLastName(),
             email: user.getEmail(),
             password: hashedpwd
         });

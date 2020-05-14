@@ -48,9 +48,9 @@ describe("User data validation", () => {
         const userInfo = generateFakeUser();
         const user = makeUser(userInfo);
 
-        expect(user.getfirstName()).toBe(userInfo.firstName);
-        expect(user.getfirstName()).toBe(userInfo.firstName);
-        expect(user.getfirstName()).toBe(userInfo.firstName);
+        expect(user.getFirstName()).toBe(userInfo.firstName);
+        expect(user.getLastName()).toBe(userInfo.lastName);
+        expect(user.getEmail()).toBe(userInfo.email);
         expect(user.getPasswordToHash()).toBe(userInfo.password);
     })
 
