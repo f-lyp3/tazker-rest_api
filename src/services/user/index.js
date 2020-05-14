@@ -1,7 +1,7 @@
 const { UserDb } = require("../../database");
 const { hashPassword } = require("../auth/passwords");
 
-const { isValidID, isValidEmail } = require("../../entities/validators");
+const { isValidID, isValidEmail } = require("../../utils/validators");
 
 const buildCreateUser = require("./create-user");
 const buildGetUserByEmail = require("./get-byEmail");

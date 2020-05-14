@@ -1,8 +1,12 @@
-require("dotenv").config(); // Load envirements variables.
+const {
+    HOST,
+    PORT
+} = require("../config/config");
+
 const ApiServer = require("./api/server");
 
-ApiServer.listen(process.env.PORT || 4000, () => {
+ApiServer.listen(PORT || 4000, () => {
     console.log(
-        `Tazker Rest API Server running on http://${process.env.HOST}:${process.env.PORT}/
+        `Tazker Rest API Server running on http://${HOST}:${PORT}/
     `)
 });

@@ -10,7 +10,7 @@ function buildUpdateUser({ UserDb, isValidID, hashPassword }){
 
         // TODO: in the future allow to update the current email or to add a new one more.
         let notAlloweds = checkForNonAllowed(updates, [
-            "firstname", "email", "lastname", "password"
+            "firstName", "email", "lastName", "password"
         ])
         if(notAlloweds.length) throw new Error(
             `Invalid update's fields! [${notAlloweds.join(", ")}]`

@@ -1,6 +1,6 @@
 const { TaskDb } = require("../../database");
 
-const { isValidID } = require("../../entities/validators");
+const { isValidID } = require("../../utils/validators");
 
 const buildGetTaskById = require("./get-taskById");
 const buildCreateTask = require("./create-task");

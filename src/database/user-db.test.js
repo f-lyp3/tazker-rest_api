@@ -6,11 +6,11 @@ describe("User Database Interactor", () => {
     it("Should insert an user into database", async (done) => {
         const userInfo = generateFakeUser();
         const createdUser = await UserDb.insert(userInfo);
-
+     
         expect(createdUser).toBeDefined();
         expect(createdUser._id).toBeDefined();
-        expect(createdUser.firstname).toBe(userInfo.firstname);
-        expect(createdUser.lastname).toBe(userInfo.lastname);
+        expect(createdUser.firstName).toBe(userInfo.firstName);
+        expect(createdUser.lastName).toBe(userInfo.lastName);
         expect(createdUser.email).toBe(userInfo.email);
         expect(createdUser.password).toBe(userInfo.password);
         expect(createdUser.createdAt).toBeDefined();
@@ -38,13 +38,13 @@ describe("User Database Interactor", () => {
 
     it("Should update an user by id", async (done) => {
         const createdUser = await UserDb.insert(generateFakeUser())
-        const updates = { firstname: "Hello", lastname: "World" }
+        const updates = { firstName: "Hello", lastName: "World" }
         const updatedUser = await UserDb.updateById(createdUser._id, updates);
         
         expect(updatedUser).toBeDefined();
         expect(updatedUser._id).toStrictEqual(createdUser._id);
-        expect(updatedUser.firstname).toBe(updates.firstname);
-        expect(updatedUser.lastname).toBe(updates.lastname);
+        expect(updatedUser.firstName).toBe(updates.firstName);
+        expect(updatedUser.lastName).toBe(updates.lastName);
         done();
     });
 

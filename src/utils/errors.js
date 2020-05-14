@@ -3,6 +3,11 @@ function mustHaveError(thing, missing){
     return new Error(`${thing} must have ${missing}!`);
 }
 
+function notFound(thing){
+    return new Error(`${thing} not found!`);
+}
+
 module.exports = Object.freeze({
-    mustHaveError
+    mustHaveError,
+    notFound
 });

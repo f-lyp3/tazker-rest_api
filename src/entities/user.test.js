@@ -4,23 +4,23 @@ const { generateFakeUser } = require("../../__tests__/data-faker");
 
 describe("User data validation", () => {
 
-    it("Should have firstname", () => {
-        const userInfo = generateFakeUser({ firstname: null});
+    it("Should have firstName", () => {
+        const userInfo = generateFakeUser({ firstName: null});
         expect(() => makeUser(userInfo)).toThrow();
     });
 
-    it("Should have valid firstname", () => {
-        const userInfo = generateFakeUser({ firstname: "N0tV4lid"});
+    it("Should have valid firstName", () => {
+        const userInfo = generateFakeUser({ firstName: "N0tV4lid"});
         expect(() => makeUser(userInfo)).toThrow();
     });
 
-    it("Should have lastname", () => {
-        const userInfo = generateFakeUser({ lastname: null});
+    it("Should have lastName", () => {
+        const userInfo = generateFakeUser({ lastName: null});
         expect(() => makeUser(userInfo)).toThrow();
     });
 
-    it("Should have valid lastname", () => {
-        const userInfo = generateFakeUser({ lastname: "N0tV4lid"});
+    it("Should have valid lastName", () => {
+        const userInfo = generateFakeUser({ lastName: "N0tV4lid"});
         expect(() => makeUser(userInfo)).toThrow();
     });
 
@@ -48,9 +48,9 @@ describe("User data validation", () => {
         const userInfo = generateFakeUser();
         const user = makeUser(userInfo);
 
-        expect(user.getFirstname()).toBe(userInfo.firstname);
-        expect(user.getFirstname()).toBe(userInfo.firstname);
-        expect(user.getFirstname()).toBe(userInfo.firstname);
+        expect(user.getFirstName()).toBe(userInfo.firstName);
+        expect(user.getLastName()).toBe(userInfo.lastName);
+        expect(user.getEmail()).toBe(userInfo.email);
         expect(user.getPasswordToHash()).toBe(userInfo.password);
     })
 
