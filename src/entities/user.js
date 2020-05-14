@@ -1,18 +1,18 @@
 function builMakeUser({ mustHaveError, isValidEmail, isFinePassword, isValidName }){
     // makeUser Verifies given information if makes a valid user prior user creation.
     return function makeUser({
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         email,
         password
     } = {}){
 
         // All params are required!
-        if(!firstname) throw mustHaveError('User', 'firstname');
-        if(!isValidName(firstname)) throw new Error("Invalid user's firstname!")
+        if(!firstName) throw mustHaveError('User', 'firstName');
+        if(!isValidName(firstName)) throw new Error("Invalid user's firstName!")
 
-        if(!lastname) throw mustHaveError('User', 'lastname');
-        if(!isValidName(lastname)) throw new Error("Invalid user's lastname!")
+        if(!lastName) throw mustHaveError('User', 'lastName');
+        if(!isValidName(lastName)) throw new Error("Invalid user's lastName!")
 
         if(!email) throw mustHaveError('User', 'email');
         if(!isValidEmail(email)) throw new Error("Invalid user's email!");
@@ -26,8 +26,8 @@ function builMakeUser({ mustHaveError, isValidEmail, isFinePassword, isValidName
 
         // Returns a read-only object
         return Object.freeze({
-            getFirstname: () => firstname,
-            getLastname: () => lastname,
+            getfirstName: () => firstName,
+            getlastName: () => lastName,
             getEmail: () => email,
             getPasswordToHash: () => password
         });
