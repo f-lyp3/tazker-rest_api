@@ -2,16 +2,17 @@ const { makeTask } = require("../../entities")
 
 function buildUpdateTask({ TaskDb, isValidID }){
 
-    return async function update(id, { ...updates }){
+    return async function update({ id, ...otherTaskInfo }, updates){
         // Check if the given id is valid one.
-        if(!id || !isValidID(id)) throw new Error("Invalid task id!");
+        if(!id || !isValidID(id)) throw new Error("Must provide a valid task id!");
 
-        // Check if corresponding task's id exists. throw an error if so
-        const existing = await TaskDb.findById(id);
-        if(!existing) throw new Error("Task doesn't exists!")
-
-        const notAlloweds = checkForNonAllowed(updates, ["name"])
-        if(notAlloweds.length) throw new Error(`Invalid updates fields! [${notAlloweds.join(", ")}]`)
+        // Task doesn't exists. return null
+        const existing = await TaskDb.find({ _id: id, ...otherTaskInfo });
+        if(!existing) return null;
+        
+        const notAllowed = checkForNonAllowed(updates, ["name"])
+        if(notAllowed.length)
+            throw new Error(`Invalid updates fields! [${notAllowed.join(", ")}]`)
 
         // Mergin existing task with possible updates, and validate.
         makeTask({
@@ -20,7 +21,7 @@ function buildUpdateTask({ TaskDb, isValidID }){
         });
 
         // Everything above is alright, the apply the updates.
-        return await TaskDb.updateById(id, {
+        return await TaskDb.update({_id: id, ...otherTaskInfo }, {
             ...updates
         });
     }

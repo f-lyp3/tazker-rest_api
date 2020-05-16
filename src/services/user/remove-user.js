@@ -1,9 +1,9 @@
 function buildRemoveUser({ UserDb, isValidID }){
     
-    return async function removeUser({ id }){
+    return async function removeUser({ id, ...otherUserInfo }){
         if(!id || !isValidID(id)) throw new Error("Must provide a valid user id!")
 
-        const removed = await UserDb.removeById(id)
+        const removed = await UserDb.remove({ _id: id, ...otherUserInfo})
 
         return removed;
     }

@@ -31,8 +31,8 @@ describe("Patching a task", () => {
                 name: "it Won't work"
             }});
 
-        expect(statusCode).toBe(400);
-        expect(body.error).toBe("Task doesn't exists!");
+        expect(statusCode).toBe(404);
+        expect(body.error).toBe("Task not found!");
         done()
     })
 

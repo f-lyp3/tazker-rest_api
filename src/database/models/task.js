@@ -4,11 +4,11 @@ const TaskSchema = new Schema({
     name: {
         type: String
     },
-    authorID: {
+    ownerId: {
         type: Schema.Types.ObjectId,
         ref: "Users"
     },
-    parentID: {
+    parentId: {
         type: Schema.Types.ObjectId,
         ref: "Tasks",
         default: null

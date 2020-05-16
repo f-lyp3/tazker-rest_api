@@ -1,4 +1,9 @@
-function builMakeUser({ mustHaveError, isValidEmail, isFinePassword, isValidName }){
+function builMakeUser({
+    mustHaveError,
+    isValidEmail,
+    isFinePassword,
+    isValidName
+}){
     // makeUser Verifies given information if makes a valid user prior user creation.
     return function makeUser({
         firstName,
@@ -20,8 +25,9 @@ function builMakeUser({ mustHaveError, isValidEmail, isFinePassword, isValidName
         if(!password) throw mustHaveError('User', 'password');
         if(!isFinePassword(password)) {
             throw new Error(
-                "Password must be at least 6 chars long including letters, numbers, and or symbols (!-_#$%&/()=?)"
-                )
+                "Password must be at least 6 chars long\
+                including letters, numbers, and or symbols (!-_#$%&/()=?)"
+            )
         }
 
         // Returns a read-only object

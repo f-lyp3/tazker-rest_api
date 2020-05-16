@@ -1,19 +1,19 @@
 const { makeUser } = require("../../entities");
 
 function buildUpdateUser({ UserDb, isValidID, hashPassword }){
-    return async function updateUser(id, updates){
+    return async function updateUser({ id, ...otherUserInfo }, updates){
+        
         if(!id || !isValidID(id)) throw new Error("Must provide a valid user id!")
 
-        // If user doesn't exists throw at the caller.
-        let existing = await UserDb.findById(id);
+        // If user doesn't exists return null.
+        let existing = await UserDb.find({ _id: id, ...otherUserInfo });
         if(!existing) return null;
 
-        // TODO: in the future allow to update the current email or to add a new one more.
         let notAlloweds = checkForNonAllowed(updates, [
             "firstName", "email", "lastName", "password"
         ])
         if(notAlloweds.length) throw new Error(
-            `Invalid update's fields! [${notAlloweds.join(", ")}]`
+                `Invalid update's fields! [${notAlloweds.join(", ")}]`
             )
 
         // Merge old user info with updates, and validate.
@@ -22,9 +22,10 @@ function buildUpdateUser({ UserDb, isValidID, hashPassword }){
             ...updates
         });
 
-        const hashedpwd = updates.password ? await hashPassword(user.getPasswordToHash()) : user.getPasswordToHash();
+        const hashedpwd = updates.password ?
+            await hashPassword(user.getPasswordToHash()) : user.getPasswordToHash();
 
-        return await UserDb.updateById(id, {
+        return await UserDb.update({ _id: id, ...otherUserInfo }, {
             ...updates,
             password: hashedpwd
         });

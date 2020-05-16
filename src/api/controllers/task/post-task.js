@@ -1,9 +1,9 @@
-function buildPostTask({ createTask }){
+function buildPostTask({ addTask }){
     return  async function postTask({ body }){
         const taskInfo = body;
         
         try {
-            posted = await createTask(taskInfo)
+            posted = await addTask(taskInfo)
             if(!posted) return {
                 body: {
                     error: "Internal Server Error"

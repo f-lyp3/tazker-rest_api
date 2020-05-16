@@ -28,7 +28,7 @@ describe("Get task's details", () => {
         const { body, statusCode } = await getTask({ params: { id: "5e8454326b9a0b3e98a9a4"} });
 
         expect(statusCode).toBe(400);
-        expect(body.error).toBe("Invalid task's id!");
+        expect(body.error).toBe("Must provide a valid task id!");
         done();
     })
 

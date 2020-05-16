@@ -1,4 +1,4 @@
-const { removeUser, createUser } = require("./");
+const { removeUser, addUser } = require("./");
 
 const { generateFakeUser } = require("../../../__tests__/data-faker");
 
@@ -16,12 +16,13 @@ describe("Get User", () => {
     })
 
     it("Should not remove non-existing user", async (done) => {
-        expect(removeUser("5bcba4dd8609b7d2187651a7")).rejects.toThrow("Must provide a valid user id!")
+        expect(removeUser("5bcba4dd8609b7d2187651a7")).rejects.toThrow(
+            "Must provide a valid user id!")
         done()
     })
 
     it("Should remove an existing user with valid id", async (done) => {
-        const created = await createUser(generateFakeUser());
+        const created = await addUser(generateFakeUser());
         const deleted = await removeUser({ id: created._id});
 
         expect(deleted).toBeDefined()

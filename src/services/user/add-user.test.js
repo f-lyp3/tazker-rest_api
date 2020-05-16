@@ -1,4 +1,4 @@
-const { createUser } = require(".")
+const { addUser } = require(".")
 
 const { generateFakeUser } = require("../../../__tests__/data-faker");
 const truncateDb = require("../../utils/truncate-db");
@@ -11,7 +11,7 @@ describe("User creation", () => {
 
     it("Should create a user", async (done) => {
         const user = generateFakeUser()
-        const createdUser = await createUser(user);
+        const createdUser = await addUser(user);
         
         expect(createdUser).toBeDefined()
         expect(createdUser.firstName).toBe(user.firstName)

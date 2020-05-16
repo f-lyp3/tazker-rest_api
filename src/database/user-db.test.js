@@ -19,7 +19,7 @@ describe("User Database Interactor", () => {
 
     it("Should find an user by Id", async (done) => {
         const createdUser = await UserDb.insert(generateFakeUser())
-        const foundUser = await UserDb.findById(createdUser._id);
+        const foundUser = await UserDb.find({_id: createdUser._id});
         
         expect(foundUser).toBeDefined();
         expect(foundUser._id).toStrictEqual(createdUser._id);
@@ -28,7 +28,7 @@ describe("User Database Interactor", () => {
 
     it("Should find an user by Email", async (done) => {
         const createdUser = await UserDb.insert(generateFakeUser())
-        const foundUser = await UserDb.findByEmail(createdUser.email);
+        const foundUser = await UserDb.findByEmail({ email: createdUser.email });
         
         expect(foundUser).toBeDefined();
         expect(foundUser._id).toStrictEqual(createdUser._id);
@@ -39,7 +39,7 @@ describe("User Database Interactor", () => {
     it("Should update an user by id", async (done) => {
         const createdUser = await UserDb.insert(generateFakeUser())
         const updates = { firstName: "Hello", lastName: "World" }
-        const updatedUser = await UserDb.updateById(createdUser._id, updates);
+        const updatedUser = await UserDb.update({_id: createdUser._id}, updates);
         
         expect(updatedUser).toBeDefined();
         expect(updatedUser._id).toStrictEqual(createdUser._id);
@@ -50,7 +50,7 @@ describe("User Database Interactor", () => {
 
     it("Should delete an user by Id", async (done) => {
         const createdUser = await UserDb.insert(generateFakeUser())
-        const removedUser = await UserDb.removeById(createdUser._id);
+        const removedUser = await UserDb.remove({_id: createdUser._id});
         
         expect(removedUser).toBeDefined();
         expect(removedUser._id).toStrictEqual(createdUser._id);

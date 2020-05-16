@@ -3,23 +3,23 @@ const { hashPassword } = require("../auth/passwords");
 
 const { isValidID, isValidEmail } = require("../../utils/validators");
 
-const buildCreateUser = require("./create-user");
-const buildGetUserByEmail = require("./get-byEmail");
-const buldGetUserById = require("./get-byId");
+const buildAddUser = require("./add-user");
+const buildFindUserByEmail = require("./find-user-byEmail");
+const buldFindUser = require("./find-user");
 const buildUpdateUser = require("./update-user");
 const buildRemoveUser = require("./remove-user");
 
 
-const createUser = buildCreateUser({ UserDb, hashPassword });
+const addUser = buildAddUser({ UserDb, hashPassword });
 const updateUser = buildUpdateUser({ UserDb, isValidID, hashPassword });
 const removeUser = buildRemoveUser({ UserDb, isValidID });
-const getUserByEmail = buildGetUserByEmail({ UserDb, isValidEmail });
-const getUserById = buldGetUserById({ UserDb, isValidID });
+const findUserByEmail = buildFindUserByEmail({ UserDb, isValidEmail });
+const findUser = buldFindUser({ UserDb, isValidID });
 
 module.exports = Object.freeze({
-    createUser,
-    getUserById,
-    getUserByEmail,
+    addUser,
+    findUser,
+    findUserByEmail,
     updateUser,
     removeUser
 });
