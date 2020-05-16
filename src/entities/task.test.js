@@ -8,17 +8,17 @@ describe("Task Entity Object", () => {
         expect(() => makeTask(taskInfo)).toThrow()
     })
     it("Should have an author id", () => {
-        const taskInfo = generateFakeTask({authorID: null});
+        const taskInfo = generateFakeTask({ownerId: null});
         expect(() => makeTask(taskInfo)).toThrow()
     })
 
     it("Should have a valid author's id", () => {
-        const taskInfo = generateFakeTask({authorID: "d8kdfsd9312dfsdf"});
+        const taskInfo = generateFakeTask({ownerId: "d8kdfsd9312dfsdf"});
         expect(() => makeTask(taskInfo)).toThrow()
     })
 
     it("Should have a valid parent's id", () => {
-        const taskInfo = generateFakeTask({parentID: "d8kdfsd9312dfsdf"});
+        const taskInfo = generateFakeTask({parentId: "d8kdfsd9312dfsdf"});
         expect(() => makeTask(taskInfo)).toThrow()
     })
 
@@ -27,8 +27,8 @@ describe("Task Entity Object", () => {
         const task = makeTask(taskInfo);
 
         expect(task.getName()).toBe(taskInfo.name);
-        expect(task.getAuthorID()).toBe(taskInfo.authorID);
-        expect(task.getParentID()).toBe(taskInfo.parentID);
+        expect(task.getOwnerId()).toBe(taskInfo.ownerId);
+        expect(task.getParentId()).toBe(taskInfo.parentId);
         expect(task.getHash()).toBeDefined();
     })
 })

@@ -1,5 +1,5 @@
 const { signIn } = require("./")
-const { createUser } = require("../user")
+const { addUser } = require("../user")
 
 const { generateFakeUser } = require("../../../__tests__/data-faker");
 const trucanteDb = require("../../utils/truncate-db");
@@ -22,14 +22,14 @@ describe("Sign In", () => {
 
     it("Should not authenticate a user with wrong password", async (done) => {
         const userInfo = generateFakeUser();
-        const createdUser = await createUser(userInfo);
+        const createdUser = await addUser(userInfo);
         expect(signIn({ ...createdUser, password: "12345"})).rejects.toThrow()
         done()
     })
 
     it("Should authenticate a user with valid email and password", async (done) => {
         const userInfo = generateFakeUser();
-        let _ = await createUser(userInfo);
+        let _ = await addUser(userInfo);
         const result = await signIn(userInfo);
        
         expect(result.user).toBeDefined();

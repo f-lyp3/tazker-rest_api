@@ -1,7 +1,7 @@
 function buildSignIn({ authenticate, isMatch, UserService }){
     return async function signIn({ email, password}) {
         // Find user matching the given email
-        const foundUser = await UserService.getUserByEmail({ email });
+        const foundUser = await UserService.findUserByEmail({ email });
 
         // If there isn't a user
         if(!foundUser) throw new Error("Invalid email or password!");

@@ -1,4 +1,4 @@
-const { createTask } = require("./")
+const { createTask } = require(".")
 
 const { generateFakeTask } = require("../../../__tests__/data-faker")
 
