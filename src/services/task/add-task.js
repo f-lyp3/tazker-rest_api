@@ -12,7 +12,7 @@ function buildAddTask({ TaskDb }){
             return existingTask;
         }
         
-        if(task.getParentID()){
+        if(task.getParentId()){
             const exist = await TaskDb.find({ _id: task.getParentId() });
             if(!exist) throw new Error("Task parent not found!")
         }

@@ -2,25 +2,25 @@ const { TaskDb } = require("../../database");
 
 const { isValidID } = require("../../utils/validators");
 
-const buildGetTaskById = require("./get-taskById");
-const buildCreateTask = require("./create-task");
+const buildFindTask = require("./find-task");
+const buildAddTask = require("./add-task");
 const buildUpdateTask = require("./update-task");
 const buildRemoveTask = require("./remove-task")
 const buildListTask   = require("./list-task"); 
-const buildMakeComplete = require("./make-completed");
+const buildMakeTaskComplete = require("./make-task-complete");
 
-const getTaskById = buildGetTaskById({TaskDb, isValidID})
-const createTask = buildCreateTask({ TaskDb, isValidID })
+const findTask = buildFindTask({TaskDb, isValidID})
+const addTask = buildAddTask({ TaskDb, isValidID })
 const updateTask = buildUpdateTask({ TaskDb, isValidID })
 const removeTask = buildRemoveTask({ TaskDb, isValidID });
 const listTask = buildListTask({ TaskDb })
-const makeCompleted = buildMakeComplete({ TaskDb, isValidID });
+const makeTaskComplete = buildMakeTaskComplete({ TaskDb, isValidID });
 
 module.exports = Object.freeze({
-    getTaskById,
-    createTask,
+    findTask,
+    addTask,
     listTask,
     updateTask,
-    makeCompleted,
+    makeTaskComplete,
     removeTask
 });
