@@ -1,9 +1,9 @@
-function buildGetTask({ getTaskById }){
+function buildGetTask({ findTask }){
     return async function getTask({ params }){
         const { id } = params;
         
         try {
-            const found = await getTaskById({ id: id });
+            const found = await findTask({ id: id });
             if(!found) {
                 return {
                     body: { error: "Task not found!" },

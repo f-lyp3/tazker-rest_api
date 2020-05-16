@@ -4,7 +4,13 @@ function buildPatchTask({ updateTask }){
         const updates = body;
 
         try {
-            const updated = await updateTask(id, updates);
+            const updated = await updateTask({ id }, updates);
+            if(!updated){
+                return {
+                    body: { error: "Task not found!" },
+                    statusCode: 404
+                }
+            }
             return {
                 body: { updated },
                 statusCode: 201

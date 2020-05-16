@@ -18,25 +18,25 @@ describe("Update User", () => {
         done();
     });
 
-    // it("Should not update a user with invalid update's fields", async (done) => {
-    //     const createdUser = await addUser(generateFakeUser());
+    it("Should not update a user with invalid update's fields", async (done) => {
+        const createdUser = await addUser(generateFakeUser());
 
-    //     expect(updateUser({id: createdUser._id}, {
-    //         name: "new name",
-    //         job: "Programmer",
-    //     })).rejects.toThrow('Invalid update\'s fields! [name, job]');
-    //     done();
-    // })
+        expect(updateUser({id: createdUser._id}, {
+            name: "new name",
+            job: "Programmer",
+        })).rejects.toThrow('Invalid update\'s fields! [name, job]');
+        done();
+    })
 
-    // it("Should not update a user by id with invalid values", async (done) => {
-    //     const createdUser = await addUser(generateFakeUser());
+    it("Should not update a user by id with invalid values", async (done) => {
+        const createdUser = await addUser(generateFakeUser());
 
-    //     expect(updateUser({id: createdUser._id}, {
-    //         firstName: "",
-    //         sex: "M"
-    //     })).rejects.toThrow();
-    //     done();
-    // })
+        expect(updateUser({id: createdUser._id}, {
+            firstName: "",
+            sex: "M"
+        })).rejects.toThrow();
+        done();
+    })
 
     it("Should update an user by its id", async (done) => {
         const userInfo = generateFakeUser();

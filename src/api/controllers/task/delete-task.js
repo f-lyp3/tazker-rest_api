@@ -3,11 +3,16 @@ function buildDeleteTask({ removeTask }){
         const { id } = params;
         
         try {
-            const deleted = await removeTask(id);
-            
+            const deleted = await removeTask({ id });
+            if(!deleted){
+                return {
+                    body: { error: "Task not found!" },
+                    statusCode: 404
+                }
+            }
             return {
                 body: { deleted },
-                statusCode: 201
+                statusCode: 200
             }
         } catch (e) {
             return {
