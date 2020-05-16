@@ -22,7 +22,7 @@ function makeUserDb({ UserModel }){
 
     async function findByEmail({ email }){
         // Finds an user by email and return it
-        if(!query) return null;
+        if(!email) return null;
         try {
             const foundUser = await UserModel.findOne({ email });
             return foundUser ? foundUser._doc : null;
@@ -34,7 +34,7 @@ function makeUserDb({ UserModel }){
 
     async function insert(userInfo){
         // Creates an user and return it
-        if(!query) return null;
+        if(!userInfo) return null;
         try {
             const created = await UserModel.create(userInfo);
             return created._doc;
@@ -44,11 +44,11 @@ function makeUserDb({ UserModel }){
         }
     }
 
-    async function update(userId, updates){
+    async function update(query, updates){
         // Updates an user by id and return it
         if(!query) return null;
         try {
-            const updatedUser = await UserModel.findAndUpdate(
+            const updatedUser = await UserModel.findOneAndUpdate(
                 query, updates, { new: true }
             );
             return updatedUser ? updatedUser._doc : null;
@@ -58,11 +58,11 @@ function makeUserDb({ UserModel }){
         }
     }
 
-    async function remove(userId){
+    async function remove(query){
         // Remove an user by id and return it
         if(!query) return null;
         try {
-            const removedUser = await UserModel.findAndRemove(userId);
+            const removedUser = await UserModel.findOneAndRemove(query);
             return removedUser ? removedUser._doc : null;
         } catch (err) {
             // TODO: Add loggin

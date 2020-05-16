@@ -13,8 +13,8 @@ function generateFakeUser(overrides){
 function generateFakeTask(overrides){
     return Object.freeze({
         name: faker.lorem.words(3),
-        authorID: "5e8454326b9a0b352e98a9a4",
-        parentID: null,
+        ownerId: "5e8454326b9a0b352e98a9a4",
+        parentId: null,
         ...overrides
     })
 }

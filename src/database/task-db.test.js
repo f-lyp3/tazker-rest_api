@@ -18,8 +18,8 @@ describe("Task Database", () => {
 
         expect(createdTask).toBeDefined();
         expect(createdTask.name).toBe(taskInfo.name)
-        expect(String(createdTask.authorID)).toBe(taskInfo.authorID)
-        expect(String(createdTask.parentID)).toBe(String(taskInfo.parentID))
+        expect(String(createdTask.ownerId)).toBe(taskInfo.ownerId)
+        expect(String(createdTask.parentId)).toBe(String(taskInfo.parentId))
         expect(createdTask.hash).toBeDefined()
         done()
     });
