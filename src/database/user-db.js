@@ -1,33 +1,31 @@
 function makeUserDb({ UserModel }){
     return Object.freeze({
         find,
-        findById,
         findByEmail,
         insert,
-        updateById,
-        removeById
+        update,
+        remove
     });
 
-    async function find(){}
-
-    async function findById(userId){
+    async function find(query){
+        if(!query) return null;
         // Finds an user by it's id and return it
         try {
-            const foundUser = await UserModel.findById(userId);
-            if(!foundUser) return null
-            return foundUser._doc; // Return the document info only, without mongoose methods
+            const foundUser = await UserModel.findOne(query);
+            // Return the document info only, without mongoose methods
+            return foundUser ? foundUser._doc : null 
         } catch (err) {
             // TODO: Add loggin
             console.log(err)
         }
     }
 
-    async function findByEmail(userEmail){
+    async function findByEmail({ email }){
         // Finds an user by email and return it
+        if(!query) return null;
         try {
-            const foundUser = await UserModel.findOne({ email: userEmail});
-            if(!foundUser) return null
-            return foundUser._doc; // Return the document info only, without mongoose methods
+            const foundUser = await UserModel.findOne({ email });
+            return foundUser ? foundUser._doc : null;
         } catch (err) {
             // TODO: Add loggin
             console.log(err)
@@ -36,33 +34,36 @@ function makeUserDb({ UserModel }){
 
     async function insert(userInfo){
         // Creates an user and return it
+        if(!query) return null;
         try {
             const created = await UserModel.create(userInfo);
-            return created._doc; // Return the document info only, without mongoose methods
+            return created._doc;
         } catch (err) {
             // TODO: Add loggin
             console.log(err)
         }
     }
 
-    async function updateById(userId, updates){
+    async function update(userId, updates){
         // Updates an user by id and return it
+        if(!query) return null;
         try {
-            const updatedUser = await UserModel.findByIdAndUpdate(userId, updates, { new: true });
-            if(!updatedUser) return null
-            return updatedUser._doc; // Return the document info only, without mongoose methods
+            const updatedUser = await UserModel.findAndUpdate(
+                query, updates, { new: true }
+            );
+            return updatedUser ? updatedUser._doc : null;
         } catch (err) {
             // TODO: Add loggin
             console.log(err)
         }
     }
 
-    async function removeById(userId){
+    async function remove(userId){
         // Remove an user by id and return it
+        if(!query) return null;
         try {
-            const removedUser = await UserModel.findByIdAndRemove(userId);
-            if(!removedUser) return null
-            return removedUser._doc; // Return the document info only, without mongoose methods
+            const removedUser = await UserModel.findAndRemove(userId);
+            return removedUser ? removedUser._doc : null;
         } catch (err) {
             // TODO: Add loggin
             console.log(err)
