@@ -1,10 +1,10 @@
-function buildGetUser({ getUserById }){
+function buildGetUser({ findUser }){
     // A factory function for handling GET requests
     return async function getUser({ params}){
         const { id } = params
         try {
             // Retrive user form DB
-            const found = await getUserById({ id });
+            const found = await findUser({ id });
             if(!found){
                 // Not found! return 404
                 return {
