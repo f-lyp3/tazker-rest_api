@@ -22,11 +22,13 @@ const AuthRoutesHandler = makeAuthRoutesHandler(
 );
 
 const UserRoutesHandler = makeUserRoutesHandler(
-    { router: new Router(), expressCallbackHelper, UserController}
+    { router: new Router(), expressCallbackHelper,
+        UserController, AuthController}
 );
 
 const TaskRoutesHandler = makeTaskRoutesHandler(
-    { router: new Router(), expressCallbackHelper, TaskController }
+    { router: new Router(), expressCallbackHelper,
+        TaskController, AuthController }
 );
 
 
