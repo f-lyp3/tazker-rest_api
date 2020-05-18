@@ -12,7 +12,8 @@ function makeExpressCallback (controller) {
                 'User-Agent': req.get('User-Agent'),
                 // Authorization will save the token for later use
                 'Authorization': req.get('Authorization') ? req.get('Authorization').replace("Bearer", ""): null
-            }
+            },
+            realRequestObj: req
         }
         // Let the controller deals with reqObj then respond with controller's returned value
         controller(httpRequest)
