@@ -1,6 +1,5 @@
 function buildListTask({ listTask }){
-    return async ({ params, realRequestObj }) => {
-        const query = params;
+    return async ({ query, realRequestObj }) => {
         const { userId } = realRequestObj;
         try {
             const tasks = await listTask({ ...query, ownerId: userId });
