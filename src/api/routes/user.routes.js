@@ -2,10 +2,10 @@ function buildUserRoutesHandler({ router, expressCallbackHelper, UserController,
 
     // Only authencticate user's will access these routes
     router.use(expressCallbackHelper(AuthController.isAuthenticated))
-
+    router.get("/user/me", expressCallbackHelper(UserController.getMe));
     router.get("/user/:id", expressCallbackHelper(UserController.getUser));
-    router.put("/user/:id", expressCallbackHelper(UserController.putUser));
-    router.delete("/user/:id", expressCallbackHelper(UserController.deleteUser));
+    router.put("/user/me", expressCallbackHelper(UserController.putUser));
+    router.delete("/user/me", expressCallbackHelper(UserController.deleteUser));
 
     return router;
 }

@@ -1,6 +1,11 @@
 function buildPostTask({ addTask }){
-    return  async function postTask({ body }){
-        const taskInfo = body;
+    return  async function postTask({ body, realRequestObj }){
+        const { userId } = realRequestObj;
+
+        const taskInfo = {
+            ...body,
+            ownerId: userId
+        }
         
         try {
             posted = await addTask(taskInfo)

@@ -1,9 +1,9 @@
 function buildDeleteTask({ removeTask }){
-    return async function deleteTask({ params }){
+    return async function deleteTask({ params, realRequestObj }){
         const { id } = params;
-        
+        const { userId } = realRequestObj
         try {
-            const deleted = await removeTask({ id });
+            const deleted = await removeTask({ id, ownerId: userId });
             if(!deleted){
                 return {
                     body: { error: "Task not found!" },

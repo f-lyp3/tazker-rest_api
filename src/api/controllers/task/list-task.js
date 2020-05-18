@@ -1,8 +1,8 @@
 function buildListTask({ listTask }){
-    return async ({ params, body }) => {
-        const query = params;
+    return async ({ query, realRequestObj }) => {
+        const { userId } = realRequestObj;
         try {
-            const tasks = await listTask(query);
+            const tasks = await listTask({ ...query, ownerId: userId });
 
             return { body: { tasks }, statusCode: 200 }
         } catch (e){
