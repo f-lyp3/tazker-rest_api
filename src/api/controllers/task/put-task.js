@@ -1,10 +1,11 @@
 function buildPatchTask({ updateTask }){
-    return async function patchTask({ body, params }) {
+    return async function patchTask({ body, params, realRequestObj }) {
         const { id } = params;
         const updates = body;
+        const { userId } = realRequestObj;
 
         try {
-            const updated = await updateTask({ id }, updates);
+            const updated = await updateTask({ id, ownerId: userId }, updates);
             if(!updated){
                 return {
                     body: { error: "Task not found!" },

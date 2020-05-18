@@ -7,13 +7,18 @@ function buildAddTask({ TaskDb }){
         // Allow not duplicates, if task hash already exist return existing task
         // Does direfenents users can have task with same name, because :
         // hash => createHash(@String(task.name + task.authorID + task.parentID))
-        const existingTask = await TaskDb.findByHash({ hash: task.getHash() })
+        const existingTask = await TaskDb.findByHash({
+            hash: task.getHash()
+        }
+        )
         if(existingTask) {
             return existingTask;
         }
         
         if(task.getParentId()){
-            const exist = await TaskDb.find({ _id: task.getParentId() });
+            const exist = await TaskDb.find(
+                { _id: task.getParentId(), ownerId: task.getOwnerId }
+            );
             if(!exist) throw new Error("Task parent not found!")
         }
         

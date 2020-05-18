@@ -1,9 +1,10 @@
 function buildGetTask({ findTask }){
-    return async function getTask({ params }){
+    return async function getTask({ params, realRequestObj }){
         const { id } = params;
+        const { userId } = realRequestObj;
         
         try {
-            const found = await findTask({ id: id });
+            const found = await findTask({ id, ownerId: userId });
             if(!found) {
                 return {
                     body: { error: "Task not found!" },
