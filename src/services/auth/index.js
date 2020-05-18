@@ -1,8 +1,5 @@
-const jsonwebtoken = require("jsonwebtoken");
-
-const { APP_SECRET } = require("../../../config/config");
-
 const { isMatch } = require("./passwords");
+const { authenticate } = require("./json-web-token");
 
 const UserService = require("../user")
 
@@ -17,17 +14,3 @@ module.exports = Object.freeze({
     signIn,
     signUp
 });
-
-async function authenticate(userId){
-    const token = await generateToken(userId);
-
-    return Object.freeze({
-        user: userId,
-        token
-    });
-}
-
-
-async function generateToken(userId){
-    return await jsonwebtoken.sign({ userId }, APP_SECRET);
-}
