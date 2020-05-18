@@ -1,9 +1,9 @@
 function buildDeleteUser({ removeUser }){
     // A factory function to handle DELETE users/<id>
-    return async function deleteUser({ params }){
-        const { id } = params
+    return async function deleteUser({ realRequestObj }){
+        const { userId } = realRequestObj
         try {
-            const deleted = await removeUser({ id });
+            const deleted = await removeUser({ id: userId });
             // If nothing was deleted, user doesn't exists
             if(!deleted){
                 return {

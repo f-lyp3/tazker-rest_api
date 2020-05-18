@@ -1,10 +1,10 @@
 function buildPutUser({ updateUser }){
     // A factory function for handling update requests
-    return async function putUser({ params, body }){
-        const { id } = params
+    return async function putUser({ realRequestObj, body }){
+        const { userId } = realRequestObj
         const updates = body;
         try {
-            const updated = await updateUser(id, updates);
+            const updated = await updateUser({id: userId}, updates);
             if(!updated){
                 return {
                     body: { error: "User not found!"},
