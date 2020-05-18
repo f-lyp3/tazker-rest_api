@@ -6,7 +6,7 @@ const buildIsAuthenticated = require("./is-authenticated");
 
 const postSignUp = buildPostSignUp({ AuthService });
 const postSignIn = buildPostSignIn({ AuthService });
-const isAuthenticated = buildIsAuthenticated({ AuthService });
+const isAuthenticated = buildIsAuthenticated(AuthService);
 
 module.exports = Object.freeze({
     postSignIn,
