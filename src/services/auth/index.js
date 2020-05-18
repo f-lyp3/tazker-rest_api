@@ -1,5 +1,5 @@
 const { isMatch } = require("./passwords");
-const { authenticate } = require("./json-web-token");
+const { authenticate, getUserIdFromAuthToken } = require("./json-web-token");
 
 const UserService = require("../user")
 
@@ -12,5 +12,6 @@ const signUp = buildSignUp({ authenticate,  UserService})
 
 module.exports = Object.freeze({
     signIn,
-    signUp
+    signUp,
+    getUserIdFromAuthToken
 });
