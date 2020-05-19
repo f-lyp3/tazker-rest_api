@@ -1,6 +1,8 @@
 const { makeUser } = require("../../entities");
 
-function buildUpdateUser({ UserDb, isValidID, hashPassword }){
+function buildUpdateUser({
+    UserDb, isValidID, hashPassword, noSensitive
+}){
     return async function updateUser({ id, ...otherUserInfo }, updates){
         
         if(!id || !isValidID(id)) throw new Error("Must provide a valid user id!")
@@ -25,10 +27,12 @@ function buildUpdateUser({ UserDb, isValidID, hashPassword }){
         const hashedpwd = updates.password ?
             await hashPassword(user.getPasswordToHash()) : user.getPasswordToHash();
 
-        return await UserDb.update({ _id: id, ...otherUserInfo }, {
+        const updatedUser = await UserDb.update({ _id: id, ...otherUserInfo }, {
             ...updates,
             password: hashedpwd
         });
+
+        return noSensitive(updatedUser, ["password"]);
     }
 
     function checkForNonAllowed(updates, allowed){
