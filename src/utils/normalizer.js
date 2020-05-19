@@ -9,6 +9,7 @@ function capitalizeText(text){
 }
 
 function noSensitive(obj, sensitives){
+    if(!obj) return obj;
     const newObj = {};
 
     for(let property of Object.keys(obj)){
