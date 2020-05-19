@@ -1,10 +1,16 @@
 "use strict";
 
-function buildmakeTask({ mustHaveError, isValidID, makeHash }){
+function buildmakeTask({
+    mustHaveError,
+    isValidID,
+    makeHash,
+    capitalizeText
+}){
     return function makeTask({
         name, // name of the task
         ownerId, // the owner's id, the user creating the task
-        parentId = null // If supplied it'll be interpreted as subtask of this tasks's id
+        // If supplied it'll be interpreted as subtask of this tasks's id
+        parentId = null 
     } = {}){
         // Must have a name
         if(!name) throw mustHaveError("Task", "a name");
@@ -20,7 +26,7 @@ function buildmakeTask({ mustHaveError, isValidID, makeHash }){
         const hash = makeHash(`${name}${parentId}${ownerId}`);
 
         return Object.freeze({
-            getName : () => name,
+            getName : () => capitalizeText(name),
             getOwnerId: () => ownerId,
             getParentId: () => parentId,
             getHash: () => hash
