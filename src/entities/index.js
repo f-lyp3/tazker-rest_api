@@ -1,7 +1,10 @@
 const crypto = require("crypto");
 
 const { mustHaveError } = require("../utils/errors");
-const { capitalizeWord } = require("../utils/normalizer");
+const {
+    capitalizeWord,
+    capitalizeText
+} = require("../utils/normalizer");
 
 const {
     isValidEmail,
@@ -18,7 +21,12 @@ const makeUser = buildMakeUser({
     isFinePassword, isValidName, capitalizeWord
 });
 
-const makeTask = buildMakeTask({mustHaveError, isValidID, makeHash})
+const makeTask = buildMakeTask({
+    mustHaveError,
+    isValidID,
+    makeHash,
+    capitalizeText
+})
 
 module.exports = Object.freeze({
     makeUser,
