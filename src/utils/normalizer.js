@@ -22,5 +22,6 @@ function noSensitive(obj, sensitives){
 
 module.exports = Object.freeze({
     capitalizeWord,
-    noSensitive
+    noSensitive,
+    capitalizeText
 });
