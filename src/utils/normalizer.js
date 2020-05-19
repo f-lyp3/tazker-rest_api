@@ -1,5 +1,5 @@
-function capitalize(word){
-    return word[0].toUpperCase() + word.slice(1)
+function capitalizeWord(word){
+    return word[0].toUpperCase() + word.slice(1).toLowerCase()
 }
 
 function noSensitive(obj, sensitives){
@@ -15,6 +15,6 @@ function noSensitive(obj, sensitives){
 }
 
 module.exports = Object.freeze({
-    capitalize,
+    capitalizeWord,
     noSensitive
 });

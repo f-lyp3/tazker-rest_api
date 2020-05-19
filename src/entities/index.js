@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 
 const { mustHaveError } = require("../utils/errors");
-const { capitalize } = require("../utils/normalizer");
+const { capitalizeWord } = require("../utils/normalizer");
 
 const {
     isValidEmail,
@@ -15,7 +15,7 @@ const buildMakeTask = require("./task");
 
 const makeUser = buildMakeUser({
     mustHaveError, isValidEmail,
-    isFinePassword, isValidName, capitalize
+    isFinePassword, isValidName, capitalizeWord
 });
 
 const makeTask = buildMakeTask({mustHaveError, isValidID, makeHash})
