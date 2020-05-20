@@ -2,9 +2,11 @@ function builMakeUser({
     mustHaveError,
     isValidEmail,
     isFinePassword,
-    isValidName
+    isValidName,
+    capitalizeWord
 }){
-    // makeUser Verifies given information if makes a valid user prior user creation.
+    // makeUser Verifies given information
+    // If it makes a valid user prior user creation.
     return function makeUser({
         firstName,
         lastName,
@@ -32,8 +34,8 @@ function builMakeUser({
 
         // Returns a read-only object
         return Object.freeze({
-            getFirstName: () => firstName,
-            getLastName: () => lastName,
+            getFirstName: () => capitalizeWord(firstName),
+            getLastName: () => capitalizeWord(lastName),
             getEmail: () => email,
             getPasswordToHash: () => password
         });

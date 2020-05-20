@@ -1,6 +1,8 @@
 const { makeUser } = require("../../entities");
 
-function buildCreateUser({ UserDb, hashPassword }){
+function buildCreateUser({
+    UserDb, hashPassword, filterSensitiveProps
+}){
     return async function create(userInfo){
 
         // Validate provided user information.
@@ -11,12 +13,14 @@ function buildCreateUser({ UserDb, hashPassword }){
 
         const hashedpwd = await hashPassword(user.getPasswordToHash());
         // User information it's ok, insert it into the db.
-        return await UserDb.insert({
+        const createdUser = await UserDb.insert({
             firstName: user.getFirstName(),
             lastName: user.getLastName(),
             email: user.getEmail(),
             password: hashedpwd
         });
+
+        return filterSensitiveProps(["password"], createdUser);
     }
 }
 

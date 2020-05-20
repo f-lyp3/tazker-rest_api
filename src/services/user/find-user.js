@@ -1,10 +1,12 @@
-function buildFindUser({ UserDb, isValidID }){
+function buildFindUser({
+    UserDb, isValidID, filterSensitiveProps
+}){
     return async function findUser({ id, ...otherUserInfo }) {
         if(id && !isValidID(id)) throw new Error("Must provide a valid user id!")
 
-        const found = await UserDb.find({ _id: id, ...otherUserInfo });
+        const foundUser = await UserDb.find({ _id: id, ...otherUserInfo });
 
-        return found;
+        return filterSensitiveProps(["password"], foundUser);
     }
 }
 

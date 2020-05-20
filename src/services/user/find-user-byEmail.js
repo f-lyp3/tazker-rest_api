@@ -1,10 +1,12 @@
-function buildFindUserByEmail({ UserDb, isValidEmail }){
+function buildFindUserByEmail({
+    UserDb, isValidEmail, filterSensitiveProps
+}){
     return async function findUserByEmail({ email, ...otherUserInfo }) {
         if(!email || !isValidEmail(email)) throw new Error("Must provide an valid email")
 
-        const found = await UserDb.findByEmail({ email });
+        const foundUser = await UserDb.findByEmail({ email, ...otherUserInfo });
 
-        return found;
+        return filterSensitiveProps([], foundUser);
     }
 }
 
