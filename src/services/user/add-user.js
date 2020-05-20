@@ -1,7 +1,7 @@
 const { makeUser } = require("../../entities");
 
 function buildCreateUser({
-    UserDb, hashPassword, noSensitive
+    UserDb, hashPassword, filterSensitiveProps
 }){
     return async function create(userInfo){
 
@@ -20,7 +20,7 @@ function buildCreateUser({
             password: hashedpwd
         });
 
-        return noSensitive(createdUser, ["password"]);
+        return filterSensitiveProps(["password"], createdUser);
     }
 }
 

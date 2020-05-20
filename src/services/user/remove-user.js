@@ -1,5 +1,5 @@
 function buildRemoveUser({
-    UserDb, isValidID, noSensitive
+    UserDb, isValidID, filterSensitiveProps
 }){
     
     return async function removeUser({ id, ...otherUserInfo }){
@@ -7,7 +7,7 @@ function buildRemoveUser({
 
         const removedUser = await UserDb.remove({ _id: id, ...otherUserInfo})
 
-        return noSensitive(removedUser, ["password"]);
+        return filterSensitiveProps(["password"], removedUser);
     }
 }
 

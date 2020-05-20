@@ -2,7 +2,7 @@ const { UserDb } = require("../../database");
 const { hashPassword } = require("../auth/passwords");
 
 const { isValidID, isValidEmail } = require("../../utils/validators");
-const { noSensitive } = require("../../utils/normalizer");
+const { filterSensitiveProps } = require("../../utils/normalizer");
 
 const buildAddUser = require("./add-user");
 const buildFindUserByEmail = require("./find-user-byEmail");
@@ -11,15 +11,15 @@ const buildUpdateUser = require("./update-user");
 const buildRemoveUser = require("./remove-user");
 
 
-const addUser = buildAddUser({ UserDb, hashPassword, noSensitive });
+const addUser = buildAddUser({ UserDb, hashPassword, filterSensitiveProps });
 const updateUser = buildUpdateUser({
-    UserDb, isValidID, hashPassword, noSensitive 
+    UserDb, isValidID, hashPassword, filterSensitiveProps 
 });
-const removeUser = buildRemoveUser({ UserDb, isValidID, noSensitive });
+const removeUser = buildRemoveUser({ UserDb, isValidID, filterSensitiveProps });
 const findUserByEmail = buildFindUserByEmail({
-    UserDb, isValidEmail, noSensitive
+    UserDb, isValidEmail, filterSensitiveProps
 });
-const findUser = buldFindUser({ UserDb, isValidID, noSensitive });
+const findUser = buldFindUser({ UserDb, isValidID, filterSensitiveProps });
 
 module.exports = Object.freeze({
     addUser,

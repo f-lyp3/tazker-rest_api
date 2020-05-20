@@ -1,7 +1,7 @@
 const { makeUser } = require("../../entities");
 
 function buildUpdateUser({
-    UserDb, isValidID, hashPassword, noSensitive
+    UserDb, isValidID, hashPassword, filterSensitiveProps
 }){
     return async function updateUser({ id, ...otherUserInfo }, updates){
         
@@ -32,7 +32,7 @@ function buildUpdateUser({
             password: hashedpwd
         });
 
-        return noSensitive(updatedUser, ["password"]);
+        return filterSensitiveProps(["password"], updatedUser);
     }
 
     function checkForNonAllowed(updates, allowed){
