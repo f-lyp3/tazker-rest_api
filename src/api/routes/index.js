@@ -35,9 +35,9 @@ const TaskRoutesHandler = makeTaskRoutesHandler(
 const router = new Router();
 
 // Join all routes' handlers into one
-router.use(AuthRoutesHandler);
-router.use(UserRoutesHandler);
-router.use(TaskRoutesHandler);
+router.use("/auth", AuthRoutesHandler);
+router.use("/user", UserRoutesHandler);
+router.use("/tasks", TaskRoutesHandler);
 
 // Exports the router for be pluging into express app
 module.exports = router;

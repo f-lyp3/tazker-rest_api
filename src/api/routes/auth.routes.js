@@ -1,7 +1,7 @@
 function buildAuthRouterHandler({ router, expressCallbackHelper, AuthController }){
 
-    router.post("/auth/signup", expressCallbackHelper(AuthController.postSignUp));
-    router.post("/auth/signin", expressCallbackHelper(AuthController.postSignIn));
+    router.post("/signup", expressCallbackHelper(AuthController.postSignUp));
+    router.post("/signin", expressCallbackHelper(AuthController.postSignIn));
 
     return router;
 }
