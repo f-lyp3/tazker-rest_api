@@ -4,11 +4,7 @@ const Express = require("express");
 const app = Express();
 
 // Bringing in all route's handlers.
-const {
-    AuthRoutesHandler,
-    UserRoutesHandler,
-    TaskRoutesHandler
-} = require("./routes");
+const routes = require("./routes");
 
 
 // Setting up express' middlewares
@@ -21,9 +17,7 @@ app.use(Express.json());
 // })
 
 // Configuring the routes
-app.use("/api", AuthRoutesHandler);
-app.use("/api", UserRoutesHandler);
-app.use("/api", TaskRoutesHandler);
+app.use("/api", routes);
 
 // Make app avaliable outside, so we can test it without running the actual server
 module.exports = app;
