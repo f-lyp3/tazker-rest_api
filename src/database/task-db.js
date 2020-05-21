@@ -1,3 +1,5 @@
+const makeId = require("../utils/makeId");
+
 function makeTaskDb ({ TaskModel }) {
     return Object.freeze({
         findAll,
@@ -8,9 +10,27 @@ function makeTaskDb ({ TaskModel }) {
         remove
     })
 
-    async function findAll (query = {}) {
+    async function findAll ({max, before, after, ...otherQueryParams} = {}) {
         try {
-            const results = await TaskModel.find(query);
+            
+            let query = {};
+
+            if(after){
+                query = after ? {
+                        ...otherQueryParams,
+                        _id : { $gt: makeId(after) }
+                    } : { ...otherQueryParams };
+
+            } else if(before) {
+                query = before ? {
+                        ...otherQueryParams,
+                        _id : { $lt: makeId(before) }
+                    } : { ...otherQueryParams };
+            } else {
+                query = { ...otherQueryParams };
+            }            
+
+            const results = await TaskModel.find(query).limit(max);
             const foundTasks = Array.from(results, task => task._doc);
             return foundTasks;
         } catch (err){
