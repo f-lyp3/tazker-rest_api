@@ -1,10 +1,10 @@
 # Tazker Rest-API
 
-A Rest API for managing tasks by breaking it in small simpler and manageable subtasks
+A Nodejs Rest API for managing tasks by breaking it in smaller, simpler, and manageable subtasks.
 
 ## Setup
-
-**Create .env and .env.test files with the following variables :**
+**You will need to have Nodejs and Mongodb install in your computer!**
+**Create** **.env** and **.env.test** files with the following variables :
 > Assign any valid value according to your needs
 
 * DB_HOST
