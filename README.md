@@ -4,7 +4,7 @@ A Rest API for managing tasks by breaking it in small simpler and manageable sub
 
 ## Setup
 
-**create .env and .env.test files with the following variables :**
+**Create .env and .env.test files with the following variables :**
 > Assign any valid value according to your needs
 
 * DB_HOST
@@ -29,7 +29,7 @@ npm install
 npm test
 ```
 
-### for development
+### For development
 
 ```bash
 npm run dev
